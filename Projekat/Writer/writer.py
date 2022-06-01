@@ -1,7 +1,8 @@
 import socket
+from ClientUI import ClientUI
 
 
-class Writer:
+class Client:
 
     def __init__(self):
         self.port = 8000
@@ -9,19 +10,22 @@ class Writer:
         self.address = (self.server, self.port)
         self.format = 'utf-8'
 
-        self.writer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.writer.connect(self.address)
+        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.client.connect(self.address)
         self.connected = True
+        self.menu = ClientUI()
 
     def send_message(self, message):
-        self.writer.send(message.encode(self.format))
+        self.client.send(message.encode(self.format))
 
-    def writer_UI(self):
+    def client_UI(self):
         #TO DO
+        pass
+
 
 def main():
-    writer = Writer()
-    writer.writer_UI()
+    client = Client()
+    client.client_UI()
 
 
 if __name__ == "__main__":

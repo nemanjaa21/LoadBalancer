@@ -20,12 +20,15 @@ class CrudPotrosnjaBrojila(CRUD):
                     password=self.password,
                     database=self.database
             ) as connecting:
-                query = ""
+                query = f"SELECT * FROM potrosnjaBrojila pb where pb.IdBrojila = %s and pb.Mesec = %s;"
                 with connecting.cursor(prepared=True) as cursor:
-                    #TO DO
-                    pass
+                    parameter = (_id, _mesec)
+                    cursor.execute(query, parameter)
+                    result = cursor.fetchall()
+                    return result
         except Error as e:
             print(e)
+
 
     def insert(self, *args):
         _id = args[0]
@@ -38,10 +41,12 @@ class CrudPotrosnjaBrojila(CRUD):
                     password=self.password,
                     database=self.database
             ) as connecting:
-                query = ""
+                query = f"INSERT INTO potrosnjaBrojila (IdBrojila, Potrosnja, Mesec) VALUES (?, ?, ?);"
                 with connecting.cursor(prepared=True) as cursor:
-                    #TO DO
-                    pass
+                    parameter = (_id, _potrosnja, _mesec)
+                    cursor.execute(query, parameter)
+                    connecting.commit()
+                    return f"successfully inserted '{_id} {_mesec} {_potrosnja}'"
         except Error as e:
             print(e)
 

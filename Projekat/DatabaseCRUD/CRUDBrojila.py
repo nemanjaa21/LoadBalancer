@@ -31,9 +31,10 @@ class CRUDBrojila(CRUD):
                     password=self.password,
                     database=self.database
             ) as connecting:
-                query = ""
+                query = f"SELECT * FROM brojilo p where p.IdBrojila = %s;"
                 with connecting.cursor(prepared=True) as cursor:
-                    #TO DO
-                    pass
+                    cursor.execute(query, (_id,))
+                    result = cursor.fetchall()
+                    return result
         except Error as e:
             print(e)

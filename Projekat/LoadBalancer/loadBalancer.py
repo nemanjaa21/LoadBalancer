@@ -45,11 +45,11 @@ class LoadBalancer:
 
     def buffer_check(self):
 
-        if len(self.buffer) >= 2:
+        if len(self.buffer) >= 10:
             _in = list()
             for _item in self.buffer:
                 _in.append(_item)
-                if len(_in) == 2:
+                if len(_in) == 10:
                     break
             _done = False
 

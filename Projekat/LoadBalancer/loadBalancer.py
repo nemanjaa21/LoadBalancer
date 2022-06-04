@@ -1,5 +1,6 @@
 import socket
 import threading
+import time
 
 from Scripts.worker_script import Worker_script
 from Scripts.add_script import Add_script
@@ -43,8 +44,25 @@ class LoadBalancer:
             _thread.start()
 
     def buffer_check(self):
-        #TO DO
-        pass
+
+        if len(self.buffer) >= 2:
+            _in = list()
+            for _item in self.buffer:
+                _in.append(_item)
+                if len(_in) == 2:
+                    break
+            _done = False
+
+            while not _done:
+                for _worker in self.workers:
+                    if _worker.check():
+                        _worker.queue_put(_in)
+                        _done = True
+                        break
+                if not _done:
+                    time.sleep(2)
+            for _item in _in:
+                self.buffer.remove(_item)
 
 
 def main():

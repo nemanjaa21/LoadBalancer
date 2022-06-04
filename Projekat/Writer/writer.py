@@ -19,8 +19,10 @@ class Client:
         self.client.send(message.encode(self.format))
 
     def client_UI(self):
-        #TO DO
-        pass
+        while self.connected:
+            self.menu.Options()
+            _input = input()
+            self.connected = self.menu.Handle(_input, self.send_message)
 
 
 def main():

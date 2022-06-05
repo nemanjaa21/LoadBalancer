@@ -8,5 +8,36 @@ class ClientUI:
         print('5. Close connection')
 
     def Handle(self, option, send_message):
-        #TO DD
-        pass
+        _ret_val = True
+        if option == '1':
+            print("Id: ")
+            id = input()
+            print("Mesec: ")
+            mesec = input()
+            print("Potrosnja:")
+            potrosnja = input()
+
+            seq = (id, mesec, potrosnja)
+            msg = " ".join(seq)
+            send_message(msg)
+        elif option == '2':
+            msg = "add"
+            send_message(msg)
+        elif option == '3':
+            print("ID:")
+            msg = "Manual"
+            msg = msg + ':' + input()
+            print("Mesec: ")
+            msg = msg + ':' + input()
+            print("Potrosnja:")
+            msg = msg + ':' + input()
+            send_message(msg)
+        elif option == '4':
+            print("Worker name:")
+            msg = "Name "
+            msg = msg + input()
+            send_message(msg)
+        elif option == '5':
+            send_message("!DISC")
+            _ret_val = False
+        return _ret_val

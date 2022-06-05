@@ -28,8 +28,29 @@ class LoadBalancer:
         self.add_script = Add_script()
 
     def handle(self, conn, addr):
-        #TO DO
-        pass
+        print(f'[NEW CONNECTION] {addr} connected.')
+
+        is_connected = True
+
+        while is_connected:
+            _msg = conn.recv(1024).decode(self.format)
+            if _msg:
+                if _msg == '!DISC':
+                    is_connected = False
+                elif 'Manual' in _msg:
+                    self.add_script.manual_adding(_msg)
+                elif 'Name ' in _msg:
+                    self.number_of_workers = self.worker_script.terminate_worker(_msg.split()[1], self.workers,
+                                                                                 self.number_of_workers)
+                elif _msg == 'add':
+                    self.number_of_workers = self.worker_script.new_worker(conn, self.number_of_workers, self.workers)
+                    self.buffer_check()
+                else:
+                    self.add_script.automatic_adding(_msg, self.buffer)
+                    self.buffer_check()
+
+        print(f'[THREAD {threading.current_thread().ident}] Terminated')
+        conn.close()
 
     def start(self):
         self.server.listen()

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6bc04866-e864-4887-a9dc-332a20a2647d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekat/DatabaseAnalitics/Scripts/Parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekat/DatabaseAnalitics/Scripts/Parser.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,14 +30,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pythonProject" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Nemanja\Desktop\RES-Tim21\Projekat\Tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.DBAnalitics">
+  <component name="RunManager" selected="Python.loadBalancer">
     <configuration name="DBAnalitics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="RES-Tim21" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -81,8 +80,23 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for MockDB.MockDB" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="RES-Tim21" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Projekat/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;MockDB.MockDB&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for MockDB.MockDB" />
         <item itemvalue="Python.DBAnalitics" />
         <item itemvalue="Python.loadBalancer" />
       </list>

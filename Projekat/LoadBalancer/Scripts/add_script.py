@@ -19,6 +19,8 @@ class Add_script:
             if not _ret:
                 _potrosnja = _tokens[3]
                 _ret = _db.insert(_id, _mesec, _potrosnja)
+                if _ret == 1:
+                    _ret = f"Successfully inserted '{_id} {_mesec} {_potrosnja}'"
                 print("[MAIN THREAD] {ret}!".format(ret=_ret))
             else:
                 print("[MAIN THREAD] Merenje brojila id:mesec='{id}:{mesec}' vec postoji!".format(id=_id, mesec=_mesec))

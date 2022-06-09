@@ -32,9 +32,9 @@ class CRUDBrojila(CRUD):
                     parameter = (_id, _ime, _prezime, _ulica, _broj, _postanskiBroj, _grad)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return f"successfully inserted '{_id} {_ime} {_prezime} {_ulica} {_broj} {_postanskiBroj} {_grad}'"
+                    return cursor.rowcount
         except Error as e:
-            return e
+            return e.errno
 
     def delete(self, *args):
         _id = args[0]
@@ -51,9 +51,9 @@ class CRUDBrojila(CRUD):
                     parameter = (_id,)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return f"successfully deleted '{_id}'"
+                    return cursor.rowcount
         except Error as e:
-            print(e)
+            return e.errno
 
     def update(self, *args):
         _id = args[0]
@@ -77,9 +77,9 @@ class CRUDBrojila(CRUD):
                     parameter = (_ime, _prezime, _ulica, _broj, _postanskiBroj, _grad, _id)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return f"successfully updated '{_id} {_ime} {_prezime} {_ulica} {_broj} {_postanskiBroj} {_grad}'"
+                    return cursor.rowcount
         except Error as e:
-            print(e)
+            return e.errno
 
     def read(self, *args):
         _id = args[0]
@@ -96,4 +96,4 @@ class CRUDBrojila(CRUD):
                     result = cursor.fetchall()
                     return result
         except Error as e:
-            print(e)
+            return e.errno

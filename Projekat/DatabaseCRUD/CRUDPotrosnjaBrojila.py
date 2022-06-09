@@ -27,7 +27,7 @@ class CrudPotrosnjaBrojila(CRUD):
                     result = cursor.fetchall()
                     return result
         except Error as e:
-            print(e)
+            return e.errno
 
 
     def insert(self, *args):
@@ -46,9 +46,9 @@ class CrudPotrosnjaBrojila(CRUD):
                     parameter = (_id, _potrosnja, _mesec)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return f"successfully inserted '{_id} {_mesec} {_potrosnja}'"
+                    return cursor.rowcount
         except Error as e:
-            print(e)
+            return e.errno
 
     def delete(self, *args):
         pass

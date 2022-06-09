@@ -48,6 +48,8 @@ class Worker:
             else:
                 potrosnja = tokens[2]
                 _msg = self.db.insert(id_brojila, mesec, potrosnja)
+                if _msg == 1:
+                    _msg = f"Successfully inserted '{id_brojila} {mesec} {potrosnja}'"
                 print("[{name}] {msg}".format(name=threading.current_thread().name, msg=_msg))
         else:
             print("[{name}] unknown id = '{id}'".format(name=threading.current_thread().name, id=id_brojila))

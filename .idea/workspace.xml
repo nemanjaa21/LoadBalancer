@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bc04866-e864-4887-a9dc-332a20a2647d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekat/DatabaseCRUD/CRUDBrojila.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekat/DatabaseCRUD/CRUDBrojila.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekat/DatabaseCRUD/CRUDPotrosnjaBrojila.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekat/DatabaseCRUD/CRUDPotrosnjaBrojila.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekat/LoadBalancer/Scripts/add_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projekat/LoadBalancer/Scripts/add_script.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,13 +32,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Nemanja/Desktop/RES-Tim21/Projekat/Tests"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Nemanja\Desktop\RES-Tim21\Projekat\Tests" />

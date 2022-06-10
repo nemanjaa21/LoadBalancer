@@ -51,7 +51,43 @@ class CrudPotrosnjaBrojila(CRUD):
             return e.errno
 
     def delete(self, *args):
-        pass
+        _id = args[0]
+        _mesec = args[1]
+
+        try:
+            with connect(
+                    host=self.host,
+                    user=self.user,
+                    password=self.password,
+                    database=self.database
+            ) as connecting:
+                query = """DELETE FROM potrosnjaBrojila WHERE IdBrojila=(?) and Mesec=(?)"""
+                with connecting.cursor(prepared=True) as cursor:
+                    parameter = (_id, _mesec)
+                    cursor.execute(query, parameter)
+                    connecting.commit()
+                    return cursor.rowcount
+        except Error as e:
+            return e.errno
 
     def update(self, *args):
-        pass
+        _id = args[0]
+        _potrosnja = args[1]
+        _mesec = args[2]
+
+        try:
+            with connect(
+                    host=self.host,
+                    user=self.user,
+                    password=self.password,
+                    database=self.database
+            ) as connecting:
+                query = """UPDATE potrosnjaBrojila SET Potrosnja=(?)
+                                           WHERE IdBrojila=(?) and Mesec=(?);"""
+                with connecting.cursor(prepared=True) as cursor:
+                    parameter = (_potrosnja, _id, _mesec)
+                    cursor.execute(query, parameter)
+                    connecting.commit()
+                    return cursor.rowcount
+        except Error as e:
+            return e.errno

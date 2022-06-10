@@ -66,9 +66,9 @@ class CrudPotrosnjaBrojila(CRUD):
                     parameter = (_id, _mesec)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return cursor.rowcount
+                    return f"successfully deleted '{_id}:{_mesec}'"
         except Error as e:
-            return e.errno
+            print(e)
 
     def update(self, *args):
         _id = args[0]
@@ -88,6 +88,6 @@ class CrudPotrosnjaBrojila(CRUD):
                     parameter = (_potrosnja, _id, _mesec)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return cursor.rowcount
+                    return f"successfully updated '{_id} '"
         except Error as e:
-            return e.errno
+            print(e)

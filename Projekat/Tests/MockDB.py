@@ -3,6 +3,7 @@ import mysql.connector
 from mysql.connector import errorcode
 from Projekat.DatabaseCRUD.CRUDBrojila import CRUDBrojila
 from Projekat.DatabaseCRUD.CRUDPotrosnjaBrojila import CrudPotrosnjaBrojila
+from Projekat.DatabaseCRUD.AnaliticsReport import AnaliticsReport
 
 MYSQL_USER = "admin"
 MYSQL_PASSWORD = "admin"
@@ -104,7 +105,7 @@ class MockDB(TestCase):
                                        (3, 4, 555)
                                     """
         cls.db2 = CrudPotrosnjaBrojila("127.0.0.1", "admin", "admin", "test")
-
+        cls.db3 = AnaliticsReport("127.0.0.1", "admin", "admin", "test")
         try:
             cursor.execute(insert_data_query)
             cnx.commit()

@@ -24,9 +24,6 @@ class LoadBalancer:
         self.number_of_workers = 1
         self.buffer = list()
 
-        self.worker_script = Worker_script()
-        self.add_script = Add_script()
-
     def handle(self, conn, addr):
         print(f'[NEW CONNECTION] {addr} connected.')
 
@@ -38,15 +35,15 @@ class LoadBalancer:
                 if _msg == '!DISC':
                     is_connected = False
                 elif 'Manual' in _msg:
-                    self.add_script.manual_adding(_msg)
+                    Add_script.manual_adding(_msg)
                 elif 'Name ' in _msg:
-                    self.number_of_workers = self.worker_script.terminate_worker(_msg.split()[1], self.workers,
-                                                                                 self.number_of_workers)
+                    self.number_of_workers = Worker_script.terminate_worker(_msg.split()[1], self.workers,
+                                                                            self.number_of_workers)
                 elif _msg == 'add':
-                    self.number_of_workers = self.worker_script.new_worker(conn, self.number_of_workers, self.workers)
+                    self.number_of_workers = Worker_script.new_worker(self.number_of_workers, self.workers)
                     self.buffer_check()
                 else:
-                    self.add_script.automatic_adding(_msg, self.buffer)
+                    Add_script.automatic_adding(_msg, self.buffer)
                     self.buffer_check()
 
         print(f'[THREAD {threading.current_thread().ident}] Terminated')

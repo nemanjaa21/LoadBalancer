@@ -4,24 +4,46 @@ import threading
 
 class Worker_script:
 
-    def new_worker(self, conn, number_of_workers, workers):
+    @staticmethod
+    def new_worker(number_of_workers, workers):
         number_of_workers = number_of_workers + 1
         _worker = Worker(f'WORKER_{number_of_workers - 1}')
+
         t = threading.Thread(target=_worker.start_worker, name=f'WORKER_{number_of_workers - 1}')
         print(f'[NEW WORKER] client created new worker!')
         t.start()
 
         workers.append(_worker)
-        _result = f"WORKER_{number_of_workers - 1} uspesno dodat!"
-        conn.send(_result.encode('utf-8'))
         return number_of_workers
 
-    def terminate_worker(self, name, workers, number_of_workers):
+    @staticmethod
+    def terminate_worker(name, workers, number_of_workers):
+        _flag = 0
         if name != "WORKER_0":
+            _flag = 2
             for _worker in workers:
                 if _worker.name == name:
                     _worker.queue_put("!TERM")
                     workers.remove(_worker)
-                    print("[{name}] Terminated".format(name=_worker.name))
+
+                    print("[{name})] Terminated".format(name=_worker.name))
                     number_of_workers = number_of_workers - 1
+                    for i in range(0, number_of_workers - 1):
+                        _id1 = int(workers[i].name.split('_')[1])
+                        _id2 = int(workers[i + 1].name.split('_')[1])
+
+                        if _id2 - _id1 != 1:
+                            for j in range(i + 1, number_of_workers):
+                                _id = int(workers[j].name.split('_')[1])
+                                workers[j].name = "WORKER_{id}".format(id=_id - 1)
+                            break
+                    _flag = 1
+                    print("[LIST OF WORKERS]")
+                    for _w in workers:
+                        print("{name}".format(name=_w.name))
+                    break
+        else:
+            print("[THREAD {id}] {worker} cannot be deleted. Reason: System worker.".format(id=threading.current_thread().ident, worker=name))
+        if _flag == 2:
+            print("[THREAD {id}] {worker} cannot be deleted. Reason: Doesn't exists.".format(id=threading.current_thread().ident, worker=name))
         return number_of_workers

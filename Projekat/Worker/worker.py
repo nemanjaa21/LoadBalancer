@@ -28,6 +28,7 @@ class Worker:
             if item is None:
                 self.q.task_done()
                 break
+
     def queue_put(self, q):
         self.q.put(q)
 

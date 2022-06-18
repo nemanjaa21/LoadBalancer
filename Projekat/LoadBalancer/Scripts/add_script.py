@@ -3,7 +3,8 @@ from Projekat.DatabaseCRUD.databaseCRUD import DatabaseCRUD
 
 class Add_script:
 
-    def manual_adding(self, msg):
+    @staticmethod
+    def manual_adding(msg):
         _db = DatabaseCRUD()
 
         _tokens = msg.split(':')
@@ -25,5 +26,6 @@ class Add_script:
             else:
                 print("[MAIN THREAD] Merenje brojila id:mesec='{id}:{mesec}' vec postoji!".format(id=_id, mesec=_mesec))
 
-    def automatic_adding(self, msg, buffer):
+    @staticmethod
+    def automatic_adding(msg, buffer):
         buffer.append(msg)

@@ -11,13 +11,13 @@ class ClientUI:
         _ret_val = True
         if option == '1':
             print("Id: ")
-            id = input()
+            _id = input()
             print("Mesec: ")
             mesec = input()
             print("Potrosnja:")
             potrosnja = input()
 
-            seq = (id, mesec, potrosnja)
+            seq = (_id, mesec, potrosnja)
             msg = " ".join(seq)
             send_message(msg)
         elif option == '2':

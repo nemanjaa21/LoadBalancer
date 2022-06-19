@@ -10,13 +10,13 @@ class Client:
         self.address = (self.server, self.port)
         self.format = 'utf-8'
 
-        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.client.connect(self.address)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock.connect(self.address)
         self.connected = True
         self.menu = ClientUI()
 
     def send_message(self, message):
-        self.client.send(message.encode(self.format))
+        self.sock.send(message.encode(self.format))
 
     def client_UI(self):
         while self.connected:

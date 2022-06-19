@@ -28,6 +28,7 @@ class Worker:
             if item is None:
                 self.q.task_done()
                 break
+        return 0
 
     def queue_put(self, q):
         self.q.put(q)
@@ -39,13 +40,15 @@ class Worker:
         print("[{name}] Processing message '{msg}'".format(name=threading.current_thread().name, msg=item))
         tokens = item.split()
         id_brojila = tokens[0]
-
+        _suc = "[{name}] Message processed '{msg}'\n".format(name=threading.current_thread().name, msg=item)
         res = self.db.get_brojilo(id_brojila)
         if res:
             mesec = tokens[1]
             res = self.db.get_potrosnja_brojila(id_brojila, mesec)
             if res:
                 print("[{name}] '{item}' already exists".format(name=threading.current_thread().name, item=item))
+                print(_suc)
+                return -2
             else:
                 potrosnja = tokens[2]
                 _msg = self.db.insert(id_brojila, mesec, potrosnja)
@@ -54,5 +57,8 @@ class Worker:
                 print("[{name}] {msg}".format(name=threading.current_thread().name, msg=_msg))
         else:
             print("[{name}] unknown id = '{id}'".format(name=threading.current_thread().name, id=id_brojila))
-        print("[{name}] Message processed '{msg}'\n".format(name=threading.current_thread().name, msg=item))
+            print(_suc)
+            return -1
+        print(_suc)
+        return 0
        

@@ -64,25 +64,33 @@ class LoadBalancer:
     def buffer_check(self):
 
         if len(self.buffer) >= 10:
-            _in = list()
-            for _item in self.buffer:
-                _in.append(_item)
-                if len(_in) == 10:
-                    break
+            _in = self.add_to_temp(self.buffer)
             _done = False
 
             while not _done:
                 for _worker in self.workers:
-                    if _worker.check():
-                        _worker.queue_put(_in)
-                        _done = True
-                        break
+                    _done = self.is_worker_free(_worker, _in)
                 if not _done:
                     time.sleep(2)
-            for _item in _in:
-                self.buffer.remove(_item)
+            self.clear_buffer(_in)
 
+    def is_worker_free(self, worker, msg):
+        if worker.check():
+            worker.queue_put(msg)
+            return True
+        return False
 
+    def clear_buffer(self, buffer):
+        for _item in buffer:
+            self.buffer.remove(_item)
+
+    def add_to_temp(self, buffer):
+        _in = list()
+        for _item in buffer:
+            _in.append(_item)
+            if len(_in) == 10:
+                break
+        return _in
 def main():
     _server = LoadBalancer()
     _server.start()

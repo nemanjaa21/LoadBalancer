@@ -33,22 +33,37 @@ class Worker_script:
 
                     print("[{name})] Terminated".format(name=_worker.name))
                     number_of_workers = number_of_workers - 1
-                    for i in range(0, number_of_workers - 1):
-                        _id1 = int(workers[i].name.split('_')[1])
-                        _id2 = int(workers[i + 1].name.split('_')[1])
+                    Worker_script.reorder_workers(workers, number_of_workers)
 
-                        if _id2 - _id1 != 1:
-                            for j in range(i + 1, number_of_workers):
-                                _id = int(workers[j].name.split('_')[1])
-                                workers[j].name = "WORKER_{id}".format(id=_id - 1)
-                            break
                     _flag = 1
-                    print("[LIST OF WORKERS]")
-                    for _w in workers:
-                        print("{name}".format(name=_w.name))
+                    Worker_script.print_workers(workers)
                     break
         else:
-            print("[THREAD {id}] {worker} cannot be deleted. Reason: System worker.".format(id=threading.current_thread().ident, worker=name))
+            print("[THREAD {id}] {worker} cannot be deleted. Reason: System worker.".format(
+                id=threading.current_thread().ident, worker=name))
         if _flag == 2:
-            print("[THREAD {id}] {worker} cannot be deleted. Reason: Doesn't exists.".format(id=threading.current_thread().ident, worker=name))
+            print("[THREAD {id}] {worker} cannot be deleted. Reason: Doesn't exists.".format(
+                id=threading.current_thread().ident, worker=name))
         return number_of_workers
+
+    @staticmethod
+    def change_name(workers, number_of_workers, i):
+        for j in range(i + 1, number_of_workers):
+            _id = int(workers[j].name.split('_')[1])
+            workers[j].name = "WORKER_{id}".format(id=_id - 1)
+
+    @staticmethod
+    def print_workers(workers):
+        print("[LIST OF WORKERS]")
+        for _w in workers:
+            print("{name}".format(name=_w.name))
+
+    @staticmethod
+    def reorder_workers(workers, number_of_workers):
+        for i in range(0, number_of_workers - 1):
+            _id1 = int(workers[i].name.split('_')[1])
+            _id2 = int(workers[i + 1].name.split('_')[1])
+
+            if _id2 - _id1 != 1:
+                Worker_script.change_name(workers, number_of_workers, i)
+                break

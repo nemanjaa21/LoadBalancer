@@ -6,7 +6,7 @@ class MyTestCase(MockDB):
 
     def test1_read(self):
         # Pokusaj citanja brojila koje postoji u MockDB
-        self.assertEqual(self.db1.read(1), [(1, "Janko", "Jankovic", "Vuka Karadzica", 50, '21101', "Novi Sad")])
+        self.assertEqual(self.db1.read(1), [self.test_tuple])
 
     def test2_read(self):
         # Pokusaj citanja brojila koje ne postoji u MockDB
@@ -35,7 +35,7 @@ class MyTestCase(MockDB):
 
     def test2_insert(self):
         # Pokusaj unosa novog brojila ciji IdBrojila vec postoji u MockDB
-        self.assertEqual(self.db1.insert(1, "Janko", "Jankovic", "Vuka Karadzica", 50, '21101', "Novi Sad"), -1)
+        self.assertEqual(self.db1.insert(1, "Janko", "Jankovic", "Neretljanska", 50, '21101', "Novi Sad"), -1)
 
     def test3_insert(self):
         # Pokusaj unosa novog brojila bez parametra

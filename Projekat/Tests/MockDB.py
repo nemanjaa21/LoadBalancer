@@ -11,7 +11,7 @@ from Projekat.DatabaseCRUD.AnaliticsReport import AnaliticsReport
 
 
 MYSQL_USER = "admin"
-MYSQL_PASSWORD = "admin"
+MYSQL_LOGIN = "admin"
 MYSQL_DB = "test"
 MYSQL_HOST = "127.0.0.1"
 
@@ -23,7 +23,7 @@ class MockDB(TestCase):
         cnx = mysql.connector.connect(
             host=MYSQL_HOST,
             user=MYSQL_USER,
-            password=MYSQL_PASSWORD,
+            password=MYSQL_LOGIN,
         )
         cursor = cnx.cursor(dictionary=True)
 
@@ -117,6 +117,8 @@ class MockDB(TestCase):
         except mysql.connector.Error as err:
             print("Data insertion to 'potrosnjaBrojila' failed \n" + err.msg)
 
+        cls.test_tuple = (1, "Janko", "Jankovic", "Vuka Karadzica", 50, '21101', "Novi Sad")
+
         cursor.close()
         cnx.close()
 
@@ -125,7 +127,7 @@ class MockDB(TestCase):
         cnx = mysql.connector.connect(
             host=MYSQL_HOST,
             user=MYSQL_USER,
-            password=MYSQL_PASSWORD
+            password=MYSQL_LOGIN
         )
         cursor = cnx.cursor(dictionary=True)
 

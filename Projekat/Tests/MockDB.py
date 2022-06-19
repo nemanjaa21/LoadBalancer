@@ -1,9 +1,14 @@
 from unittest import TestCase
 import mysql.connector
 from mysql.connector import errorcode
+
+import sys
+sys.path.append("../../")
+
 from Projekat.DatabaseCRUD.CRUDBrojila import CRUDBrojila
 from Projekat.DatabaseCRUD.CRUDPotrosnjaBrojila import CrudPotrosnjaBrojila
 from Projekat.DatabaseCRUD.AnaliticsReport import AnaliticsReport
+
 
 MYSQL_USER = "admin"
 MYSQL_PASSWORD = "admin"

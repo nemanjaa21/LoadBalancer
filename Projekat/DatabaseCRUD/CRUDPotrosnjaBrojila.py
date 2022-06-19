@@ -31,6 +31,8 @@ class CrudPotrosnjaBrojila(CRUD):
 
 
     def insert(self, *args):
+        if len(args) > 3:
+            return -5
         _id = args[0]
         _mesec = args[1]
         _potrosnja = args[2]
@@ -51,6 +53,8 @@ class CrudPotrosnjaBrojila(CRUD):
             return e.errno
 
     def delete(self, *args):
+        if len(args) > 2:
+            return -5
         _id = args[0]
         _mesec = args[1]
 
@@ -66,11 +70,13 @@ class CrudPotrosnjaBrojila(CRUD):
                     parameter = (_id, _mesec)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return f"successfully deleted '{_id}:{_mesec}'"
+                    return cursor.rowcount
         except Error as e:
             print(e)
 
     def update(self, *args):
+        if len(args) > 3:
+            return -5
         _id = args[0]
         _potrosnja = args[1]
         _mesec = args[2]
@@ -88,6 +94,6 @@ class CrudPotrosnjaBrojila(CRUD):
                     parameter = (_potrosnja, _id, _mesec)
                     cursor.execute(query, parameter)
                     connecting.commit()
-                    return f"successfully updated '{_id} '"
+                    return cursor.rowcount
         except Error as e:
             print(e)

@@ -79,7 +79,7 @@ class MockDB(TestCase):
             cursor.execute(insert_data_query)
             cnx.commit()
         except mysql.connector.Error as err:
-            print("Data insertion to 'Brojilo' failed \n" + err)
+            print("Data insertion to 'Brojilo' failed \n" + err.msg)
 
         query = """
                         CREATE TABLE `potrosnjaBrojila`(
@@ -115,7 +115,7 @@ class MockDB(TestCase):
             cursor.execute(insert_data_query)
             cnx.commit()
         except mysql.connector.Error as err:
-            print("Data insertion to 'potrosnjaBrojila' failed \n" + err)
+            print("Data insertion to 'potrosnjaBrojila' failed \n" + err.msg)
 
         cursor.close()
         cnx.close()

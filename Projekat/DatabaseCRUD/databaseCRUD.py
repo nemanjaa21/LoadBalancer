@@ -5,11 +5,10 @@ from Projekat.DatabaseCRUD.AnaliticsReport import AnaliticsReport
 
 class DatabaseCRUD:
 
-    def __init__(self):
-        self.crud_brojila = CRUDBrojila('127.0.0.1', 'admin', 'admin', 'RES_PROJEKAT')
-        self.crud_potrosnja_brojila = CrudPotrosnjaBrojila('127.0.0.1', 'admin', 'admin', 'RES_PROJEKAT')
-        self.analitics = AnaliticsReport('127.0.0.1', 'admin', 'admin', 'RES_PROJEKAT')
-
+    def __init__(self, localhost='127.0.0.1', name='admin', password='admin', db='RES_PROJEKAT'):
+        self.crud_brojila = CRUDBrojila(localhost, name, password, db)
+        self.crud_potrosnja_brojila = CrudPotrosnjaBrojila(localhost, name, password, db)
+        self.analitics = AnaliticsReport(localhost, name, password, db)
 
     def get_brojilo(self, id_param):
         return self.crud_brojila.read(id_param)

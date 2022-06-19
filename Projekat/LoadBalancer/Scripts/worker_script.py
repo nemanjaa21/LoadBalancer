@@ -9,7 +9,7 @@ class Worker_script:
         number_of_workers = number_of_workers + 1
         _worker = Worker(f'WORKER_{number_of_workers - 1}')
 
-        t = threading.Thread(target=_worker.start_worker, name=f'WORKER_{number_of_workers - 1}')
+        t = threading.Thread(target=_worker.start_worker, name=f'WORKER_{number_of_workers - 1}', daemon=True)
         print(f'[NEW WORKER] client created new worker!')
         t.start()
 
@@ -23,6 +23,11 @@ class Worker_script:
             _flag = 2
             for _worker in workers:
                 if _worker.name == name:
+                    if not _worker.check():
+                        print("[THREAD {id}] {worker} cannot be deleted. Reason: Busy.".format(
+                            id=threading.current_thread().ident, worker=name))
+                        _flag = - 10
+                        break
                     _worker.queue_put("!TERM")
                     workers.remove(_worker)
 

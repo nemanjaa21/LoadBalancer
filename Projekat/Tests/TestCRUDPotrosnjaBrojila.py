@@ -110,5 +110,5 @@ class MyTestCase(MockDB):
         self.assertEqual(self.db2.delete(1, 2, 2), -5)
 
 
-if __name__ == '__main__':
-    unittest.main()
+#if __name__ == '__main__':
+    #unittest.main()

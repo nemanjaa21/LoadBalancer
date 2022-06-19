@@ -11,6 +11,9 @@ class CRUDBrojila(CRUD):
         self.database = database
 
     def insert(self, *args):
+        if len(args) > 7:
+            return -5
+
         _id = args[0]
         _ime = args[1]
         _prezime = args[2]
@@ -37,6 +40,8 @@ class CRUDBrojila(CRUD):
             return e.errno
 
     def delete(self, *args):
+        if len(args) > 1:
+            return -5
         _id = args[0]
 
         try:
@@ -56,6 +61,8 @@ class CRUDBrojila(CRUD):
             return e.errno
 
     def update(self, *args):
+        if len(args) > 7:
+            return -5
         _id = args[0]
         _ime = args[1]
         _prezime = args[2]
@@ -82,6 +89,8 @@ class CRUDBrojila(CRUD):
             return e.errno
 
     def read(self, *args):
+        if len(args) > 1:
+            return -5
         _id = args[0]
         try:
             with connect(

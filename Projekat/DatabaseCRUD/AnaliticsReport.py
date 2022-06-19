@@ -10,6 +10,8 @@ class AnaliticsReport:
         self.database = database
 
     def potrosnja_po_gradu(self, *args):
+        if len(args) > 1:
+            return -5
         _grad = args[0]
         try:
             with connect(
@@ -28,6 +30,8 @@ class AnaliticsReport:
             return e
 
     def potrosnja_po_brojilu(self, *args):
+        if len(args) > 1:
+            return -5
         _id = args[0]
         try:
             with connect(

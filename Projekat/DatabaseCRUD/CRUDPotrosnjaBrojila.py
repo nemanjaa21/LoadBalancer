@@ -11,6 +11,8 @@ class CrudPotrosnjaBrojila(CRUD):
         self.database = database
 
     def read(self, *args):
+        if len(args) > 2:
+            return -5
         _id = args[0]
         _mesec = args[1]
         try:
@@ -28,7 +30,6 @@ class CrudPotrosnjaBrojila(CRUD):
                     return result
         except Error as e:
             return e.errno
-
 
     def insert(self, *args):
         if len(args) > 3:

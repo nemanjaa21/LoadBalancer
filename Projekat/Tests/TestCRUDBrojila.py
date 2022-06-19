@@ -25,6 +25,10 @@ class MyTestCase(MockDB):
         with self.assertRaises(Exception):
             self.db1.read()
 
+    def test6_read(self):
+        # Pokusaj citanja sa osam parametara
+        self.assertEqual(self.db1.read(1, 2, 1, 1, 2, 6, 1, 1), -5)
+
     def test1_insert(self):
         # Pokusaj unosa novog brojila ciji IdBrojila ne postoji u MockDB
         self.assertEqual(self.db1.insert(10, "Marko", "Markovic", "Zmaj Jovina", 100, '21480', "Srbobran"), 1)
@@ -38,6 +42,33 @@ class MyTestCase(MockDB):
         with self.assertRaises(Exception):
             self.db1.insert()
 
+    def test4_insert(self):
+        with self.assertRaises(Exception):
+            self.db1.insert(1)
+
+    def test5_insert(self):
+        with self.assertRaises(Exception):
+            self.db1.insert(1, 2)
+
+    def test6_insert(self):
+        with self.assertRaises(Exception):
+            self.db1.insert(1, 2, 3)
+
+    def test7_insert(self):
+        with self.assertRaises(Exception):
+            self.db1.insert(1, 2, 3, 2)
+
+    def test8_insert(self):
+        with self.assertRaises(Exception):
+            self.db1.insert(1, 2, 3, 2, 5)
+
+    def test9_insert(self):
+        with self.assertRaises(Exception):
+            self.db1.insert(1, 2, 3, 2, 5, 9)
+
+    def test10_insert(self):
+        self.assertEqual(self.db1.insert(1, 2, 3, 2, 5, 9, 9, 8), -5)
+
     def test1_update(self):
         #  Pokusaj izmene postojeceg brojila u MockDB
         self.assertEqual(self.db1.update(1, "Janko", "Jankovic", "Vuka Karadzica", 50, '11000', "Beograd"), 1)
@@ -50,6 +81,33 @@ class MyTestCase(MockDB):
         # Pokusaj izmene brojila bez parametra
         with self.assertRaises(IndexError):
             self.db1.update()
+
+    def test4_update(self):
+        with self.assertRaises(IndexError):
+            self.db1.update(1)
+
+    def test5_update(self):
+        with self.assertRaises(IndexError):
+            self.db1.update(2, 1)
+
+    def test6_update(self):
+        with self.assertRaises(IndexError):
+            self.db1.update(2, 1, 1)
+
+    def test7_update(self):
+        with self.assertRaises(IndexError):
+            self.db1.update(2, 1, 1, 2)
+
+    def test8_update(self):
+        with self.assertRaises(IndexError):
+            self.db1.update(2, 1, 1, 2, 10)
+
+    def test9_update(self):
+        with self.assertRaises(IndexError):
+            self.db1.update(2, 1, 1, 2, 10, 2)
+
+    def test10_update(self):
+        self.assertEqual(self.db1.update(2, 1, 1, 2, 10, 2, 1, 1), -5)
 
     def test1_delete(self):
         # Pokusaj brisanja postojeceg u MockDB unutar tabele Brojlo
@@ -67,6 +125,9 @@ class MyTestCase(MockDB):
         # Pokusaj brisanja bez parametara
         with self.assertRaises(IndexError):
             self.db1.delete()
+
+    def test5_delete(self):
+        self.assertEqual(self.db1.delete(1, 2), -5)
 
 
 if __name__ == '__main__':

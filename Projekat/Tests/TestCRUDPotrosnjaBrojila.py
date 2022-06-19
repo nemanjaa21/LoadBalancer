@@ -26,6 +26,13 @@ class MyTestCase(MockDB):
         with self.assertRaises(Exception):
             self.db2.read()
 
+    def test6_read(self):
+        with self.assertRaises(Exception):
+            self.db2.read(1)
+
+    def test7_read(self):
+        self.assertEqual(self.db2.read(1, 1, 2), -5)
+
     def test1_insert(self):
         # Pokusaj unosa novog merenja brojila ciji IdBrojila i Mesec postoji u MockDB
         self.assertEqual(self.db2.insert(1, 2, 1000), -1)

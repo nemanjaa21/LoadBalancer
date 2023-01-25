@@ -1,7 +1,5 @@
 # Projektni Zadatak  – Load Balancer
 
-Potrebno je napraviti dizajn sistema, arhitekturu sistema, implementirati i istestirati rešenje koji simulira rad i komunikaciju 
-Load Balancer modula.
 Sistem sadrži 5 komponenti:
 1. Writer
 2. Load Balancer

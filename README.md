@@ -1,11 +1,7 @@
 # Projektni Zadatak  – Load Balancer
 
 Sistem sadrži 5 komponenti:
-1. Writer
-2. Load Balancer
-3. Worker
-4. Database CRUD
-5. Database Analitics
+
 # Writer
 
 Writer je komponenta koja služi za upisivanje novih podataka u Load Balancer komponentu.
